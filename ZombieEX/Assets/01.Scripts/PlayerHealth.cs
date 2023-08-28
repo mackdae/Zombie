@@ -91,10 +91,18 @@ public class PlayerHealth : LivingEntity // PlayerHealth는 LivingEntity를 상�
         // 아이템과 충돌한 경우 해당 아이템을 사용하는 처리
         if(!dead)
         {
-            //충돌한 상대방으로부터 IItem 컴포넌트 가져오기
-            IItem item = other.GetComponent<IItem>();
-            //가져왔으면
-            if (item != null)
+            //AmmoPack ammoPack = other.GetComponent<AmmoPack>();
+            //if (ammoPack != null)
+            //{ ammoPack.Use(this.gameObject); }
+
+            //HealthPack healthPack = other.GetComponent<HealthPack>();
+            //if (healthPack != null)
+            //{ healthPack.Use(this.gameObject); }
+
+            //↓ 인터페이스로 간결화
+
+            IItem item = other.GetComponent<IItem>();//충돌한 상대방으로부터 IItem 컴포넌트 가져오기
+            if (item != null) //가져왔으면
             {
                 //Use 메서드 실행하여 아이템 사용
                 item.Use(gameObject);
